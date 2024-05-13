@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 
 page = 1
+option = input("Which words should you send to advertisements?")
 while True:
     url = f'https://www.youthall.com/tr/jobs/?page={page}'
     html_text = requests.get(url).text
@@ -16,7 +17,7 @@ while True:
         company = advert.find('small', class_='u-clear-gap u-text-overflow').text
         program = advert.find('h5', class_='u-text-overflow').text
         lower_program = advert.find('h5', class_='u-text-overflow').text.lower()
-        if 'python' in lower_program or 'data' in lower_program:
+        if option in lower_program:
             print(f'''
             Company Name: {company}
             Program: {program}
